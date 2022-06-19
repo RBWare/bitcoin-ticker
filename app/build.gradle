@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+
+}
+
+apply from: '../constants.gradle'
+
+android {
+    compileSdk compile_sdk_version
+
+    defaultConfig {
+        applicationId "com.rbware.bitcointicker"
+        minSdk min_sdk_version
+        targetSdk target_sdk_version
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation "androidx.core:core-ktx:$androidx_core_ktx_version"
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
+    implementation "com.google.android.material:material:$google_material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$androidx_constraint_layout_version"
+    implementation "androidx.viewpager2:viewpager2:$androidx_viewpager2_version"
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_espresso_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$jetbrains_kotlin_version"
+
+    // Retrofit for REST queries and JSON parsing
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // Kotlin Co-routines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$jetbrains_coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$jetbrains_coroutine_version"
+}
